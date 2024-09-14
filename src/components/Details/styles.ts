@@ -5,6 +5,11 @@ export const Container = styled.div`
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
+
+  @media (max-width: 900px) {
+    display: flex;
+    flex-direction: column;
+  }
 `
 
 export const TextBack = styled.span`
@@ -18,22 +23,25 @@ export const TextBack = styled.span`
   border: 0;
   cursor: pointer;
   z-index: 10;
+
+  text-decoration: none;
+  text-transform: none;
 `
 
 export const ContentImg = styled.section`
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    0deg,
-    rgba(129, 138, 249, 1) 0%,
-    rgba(130, 136, 215, 1) 100%
-  );
   color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   overflow: hidden;
+
+  @media (max-width: 900px) {
+    display: flex;
+    flex-direction: column;
+  }
 `
 
 export const ImageWrapper = styled.div`
@@ -72,7 +80,7 @@ export const Content = styled.section`
 
 export const ProductTitle = styled.h1`
   font-size: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 5rem;
   color: #333;
 `
 

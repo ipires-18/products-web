@@ -1,64 +1,69 @@
 'use client'
-
 import React from 'react'
 import * as Styled from './styles'
 import Image from 'next/image'
+import { DetailsProps } from '@/types/components/details'
+import Link from 'next/link'
+import { calculateDiscountedPrice } from '@/utils/calculateDiscountedPrice'
 
-export const Details: React.FC = () => {
-  const product = {
-    title: 'Microsoft Xbox X/S Wireless Controller',
-    image: 'https://www.designi.com.br/images/preview/10001736.jpg',
-    price: 57,
-    description:
-      'Experience the modernized design of the Xbox Wireless Controller, featuring sculpted surfaces and refined geometry for enhanced comfort during gameplay.',
-    brand: 'Microsoft',
-    model: 'Xbox X/S',
-    color: 'White',
-    category: 'Gaming',
-    popular: true,
-    discount: 4
-  }
+export const Details: React.FC<DetailsProps> = ({
+  title,
+  brand,
+  category,
+  color,
+  description,
+  discount,
+  image,
+  model,
+  price
+}) => {
+  const discountedPrice = calculateDiscountedPrice(
+    Number(price),
+    Number(discount)
+  )
 
   return (
     <Styled.Container>
       <Styled.ContentImg>
-        <Styled.TextBack>Voltar</Styled.TextBack>
+        <Link href="/">
+          <Styled.TextBack>Voltar</Styled.TextBack>
+        </Link>
         <Styled.ImageWrapper>
           <Image
-            src={product.image}
+            src={image ?? '/default-image.png'}
             alt="img"
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: 'contain' }}
           />
         </Styled.ImageWrapper>
       </Styled.ContentImg>
       <Styled.Content>
-        <Styled.ProductTitle>{product.title}</Styled.ProductTitle>
+        <Styled.ProductTitle>{title}</Styled.ProductTitle>
         <Styled.ProductDetails>
           <Styled.ProductDetail>
-            <strong>Brand:</strong> {product.brand}
+            <strong>Brand:</strong> {brand}
           </Styled.ProductDetail>
           <Styled.ProductDetail>
-            <strong>Model:</strong> {product.model}
+            <strong>Model:</strong> {model}
           </Styled.ProductDetail>
           <Styled.ProductDetail>
-            <strong>Color:</strong> {product.color}
+            <strong>Color:</strong> {color}
           </Styled.ProductDetail>
           <Styled.ProductDetail>
-            <strong>Category:</strong> {product.category}
+            <strong>Category:</strong> {category}
           </Styled.ProductDetail>
           <Styled.ProductDetail>
-            <strong>Description:</strong> {product.description}
+            <strong>Description:</strong> {description}
           </Styled.ProductDetail>
           <Styled.ProductDetail>
-            <strong>Price:</strong> ${product.price}
+            <strong>Price:</strong> R$ {price}
           </Styled.ProductDetail>
           <Styled.ProductDetail>
-            <strong>Discount:</strong> {product.discount}%
+            <strong>Discount:</strong> {discount}%
           </Styled.ProductDetail>
-          {product.popular && (
-            <Styled.PopularLabel>This product is popular!</Styled.PopularLabel>
-          )}
+          <Styled.ProductDetail>
+            <strong>TOTAL:</strong> {discountedPrice}
+          </Styled.ProductDetail>
         </Styled.ProductDetails>
       </Styled.Content>
     </Styled.Container>
