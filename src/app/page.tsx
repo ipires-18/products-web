@@ -2,6 +2,7 @@ import { api } from '@/tools/api'
 import { Card } from '@/components/Card/card'
 import { GridLayout } from '@/components/GridLayout/grid-layout'
 import { ApiResponseProducts } from '@/types/pages/home'
+import Link from 'next/link'
 
 async function fetchProducts(): Promise<ApiResponseProducts | null> {
   try {
@@ -17,18 +18,18 @@ export default async function Home() {
   const response = await fetchProducts()
 
   return (
-    <>
-      <GridLayout>
-        {response?.products.map((product) => (
-          <Card
-            key={product.id}
-            title={product.title}
-            description={product.description}
-            imageSrc={product.image}
-            price={product.price}
-          />
-        ))}
-      </GridLayout>
-    </>
+    <GridLayout>
+      {response?.products.map((product) => (
+        <Link key={product.id} href={`products/${product.id}`}>
+            <Card
+              key={product.id}
+              title={product.title}
+              description={product.description}
+              imageSrc={product.image}
+              price={product.price}
+            />
+        </Link>
+      ))}
+    </GridLayout>
   )
 }
