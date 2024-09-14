@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Button = styled.button`
   padding: 8px 16px;
@@ -8,7 +8,9 @@ export const Button = styled.button`
   color: white;
   cursor: pointer;
   background-color: #828ef9;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
 
   &:hover {
     background-color: #6a4eec;
@@ -18,4 +20,4 @@ export const Button = styled.button`
   &:active {
     transform: scale(0.95);
   }
-`;
+`
