@@ -1,15 +1,9 @@
 'use client'
 import React from 'react'
 import * as Styled from './styles'
-import Image, { StaticImageData } from 'next/image'
+import Image from 'next/image'
 import { truncateText } from '@/utils/truncateText'
-
-interface CardProps {
-  imageSrc: StaticImageData | string
-  title: string
-  description: string
-  price: number
-}
+import { CardProps } from '@/types/components/card'
 
 export const Card: React.FC<CardProps> = ({
   imageSrc,
@@ -26,7 +20,7 @@ export const Card: React.FC<CardProps> = ({
   return (
     <Styled.Container>
       <Styled.ImageWrapper>
-        <Image src={imageSrc} alt="img" layout="fill" objectFit="contain" />
+        <Image src={imageSrc} alt="img" fill style={{ objectFit: 'cover' }} />
       </Styled.ImageWrapper>
       <Styled.Content>
         <Styled.Title>{title}</Styled.Title>

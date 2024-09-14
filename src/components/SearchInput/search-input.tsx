@@ -1,12 +1,8 @@
 'use client'
-
 import React, { useState } from 'react'
 import { Container, Input } from './styles'
 import { Button } from '../Button/button'
-
-interface SearchInputProps {
-  onSearch: (query: string) => void
-}
+import { SearchInputProps } from '@/types/components/search-input'
 
 export const SearchInput: React.FC<SearchInputProps> = ({ onSearch }) => {
   const [query, setQuery] = useState('')

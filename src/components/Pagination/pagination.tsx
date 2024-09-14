@@ -1,12 +1,7 @@
 'use client'
 import React from 'react'
 import * as Styled from './styles'
-
-interface PaginationProps {
-  currentPage: number
-  totalPages: number
-  onPageChange: (page: number) => void
-}
+import { PaginationProps } from '@/types/components/pagination'
 
 export const Pagination: React.FC<PaginationProps> = ({
   currentPage,

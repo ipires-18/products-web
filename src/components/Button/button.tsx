@@ -1,15 +1,7 @@
 'use client'
-
 import React from 'react'
 import * as Styled from './styles'
-
-interface ButtonProps
-  extends React.DetailedHTMLProps<
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  > {
-  title: string
-}
+import { ButtonProps } from '@/types/components/button'
 
 export const Button: React.FC<ButtonProps> = ({
   title,
