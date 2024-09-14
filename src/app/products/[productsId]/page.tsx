@@ -19,16 +19,16 @@ export default async function Products({ params }: Props) {
   const response = await fetchProductOne(Number(productsId))
 
   return (
-      <Details
-        brand={response?.product.brand}
-        category={response?.product.category}
-        color={response?.product.color}
-        description={response?.product.description}
-        discount={response?.product.discount}
-        title={response?.product.title}
-        image={response?.product.image}
-        model={response?.product.model}
-        price={response?.product.price}
-      />
+    <Details
+      brand={response?.product.brand}
+      category={response?.product.category}
+      color={response?.product.color}
+      description={response?.product.description}
+      discount={response?.product.discount}
+      title={response?.product.title}
+      image={response?.product.image}
+      model={response?.product.model}
+      price={response?.product.price}
+    />
   )
 }
