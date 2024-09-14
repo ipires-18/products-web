@@ -12,6 +12,7 @@ export const Container = styled.section`
   gap: 1rem;
   margin: 1rem auto;
   padding: 1rem;
+  height: 300px;
 
   @media (max-width: 900px) {
     display: flex;

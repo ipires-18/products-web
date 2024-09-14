@@ -20,7 +20,7 @@ export const Card: React.FC<CardProps> = ({
   return (
     <Styled.Container>
       <Styled.ImageWrapper>
-        <Image src={imageSrc} alt="img" fill style={{ objectFit: 'cover' }} />
+        <Image src={imageSrc} alt="img" fill style={{ objectFit: 'contain' }} />
       </Styled.ImageWrapper>
       <Styled.Content>
         <Styled.Title>{title}</Styled.Title>
