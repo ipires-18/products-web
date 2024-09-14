@@ -6,6 +6,10 @@ export const GridLayout = styled.main`
   gap: 20px;
   grid-template-columns: repeat(2, 1fr);
 
+  a {
+    text-decoration: none;
+  }
+
   @media (max-width: 900px) {
     display: flex;
     flex-direction: column;
