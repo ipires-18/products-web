@@ -21,13 +21,13 @@ export default async function Home() {
     <GridLayout>
       {response?.products.map((product) => (
         <Link key={product.id} href={`products/${product.id}`}>
-            <Card
-              key={product.id}
-              title={product.title}
-              description={product.description}
-              imageSrc={product.image}
-              price={product.price}
-            />
+          <Card
+            key={product.id}
+            title={product.title}
+            description={product.description}
+            imageSrc={product.image}
+            price={product.price}
+          />
         </Link>
       ))}
     </GridLayout>
