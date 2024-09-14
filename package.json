@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --ignore-pattern .next --ignore-pattern node_modules --ignore-pattern build",
-    "lint:fix": "yarn lint --fix"
+    "lint:fix": "yarn lint --fix",
+    "prepare": "husky"
   },
   "dependencies": {
     "next": "14.2.11",
@@ -27,6 +28,7 @@
     "eslint-plugin-react": "^7.36.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "globals": "^15.9.0",
+    "husky": "^9.1.6",
     "prettier": "3.3.3",
     "typescript": "^5.5.4",
     "typescript-eslint": "^8.5.0"
