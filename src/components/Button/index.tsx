@@ -1,7 +1,8 @@
 import React from 'react'
+import { ButtonStyled } from './styles'
 
 const Button = ({ title }: any) => {
-  return <button>{title}</button>
+  return <ButtonStyled>{title}</ButtonStyled>
 }
 
 export default Button
