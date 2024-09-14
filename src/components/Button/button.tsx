@@ -1,6 +1,13 @@
-import React from 'react'
-import { ButtonStyled } from './styles'
+'use client'
 
-export const Button = ({ title }: any) => {
-  return <ButtonStyled>{title}</ButtonStyled>
+import React from 'react'
+import * as Styled from './styles'
+
+interface ButtonProps extends
+  React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+  title:string
+}
+
+export const Button: React.FC<ButtonProps> = ({ title, ...props }: ButtonProps) => {
+  return <Styled.Button {...props}>{title}</Styled.Button>
 }
