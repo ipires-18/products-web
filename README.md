@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# List Products Web
 
-## Getting Started
+## 🚀 Início Rápido
 
-First, run the development server:
+Para começar a usar este projeto, siga estas etapas:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **Clone o repositório**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   `git clone https://github.com/ipires-18/products-web.git`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. **Instale as dependências**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   `npm install` ou `yarn`
 
-## Learn More
+3. **Inicie o servidor de desenvolvimento**
 
-To learn more about Next.js, take a look at the following resources:
+   `npm run dev` ou `yarn dev`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   Isso iniciará a aplicação no modo de desenvolvimento. Acesse a aplicação no seu navegador em [http://localhost:3000](http://localhost:3000).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. **Rodar os testes do projeto**
 
-## Deploy on Vercel
+   `npm run test` ou `yarn test`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🔧 Configuração
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Certifique-se de ter o Node.js instalado em sua máquina. Este projeto foi testado com a versão mais recente do Node.js.
+
+## 📝 Contribuições
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests. Por favor, siga as diretrizes de contribuição do projeto.
