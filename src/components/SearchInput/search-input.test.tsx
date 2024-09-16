@@ -1,47 +1,36 @@
-import React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
-import { SearchInput } from './search-input'
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { SearchInput } from './search-input';
+import { useProducts } from '@/context/ProductsContext';
 
-jest.mock('../Button/button', () => ({
-  Button: (props: any) => <button {...props} data-testid="search-button" />
-}))
+jest.mock('../../context/ProductsContext', () => ({
+  useProducts: jest.fn(),
+}));
 
-describe('SearchInput Component', () => {
-  test('renders SearchInput with initial state', () => {
-    render(<SearchInput onSearch={() => {}} />)
+jest.mock('../../components/Button/button', () => ({
+  Button: ({ title, onClick }: { title: string; onClick: () => void }) => (
+    <button onClick={onClick}>{title}</button>
+  ),
+}));
 
-    expect(
-      screen.getByPlaceholderText('Buscar produtos...')
-    ).toBeInTheDocument()
-    expect(screen.getByTestId('search-button')).toBeInTheDocument()
-  })
+test('renders SearchInput and handles input and button interactions', () => {
+  const searchProductsMock = jest.fn();
 
-  test('updates query state when input changes', () => {
-    render(<SearchInput onSearch={() => {}} />)
+  (useProducts as jest.Mock).mockReturnValue({
+    searchProducts: searchProductsMock,
+  });
 
-    const input = screen.getByPlaceholderText(
-      'Buscar produtos...'
-    ) as HTMLInputElement
+  render(<SearchInput />);
 
-    fireEvent.change(input, { target: { value: 'Novo produto' } })
+  const inputElement = screen.getByPlaceholderText('Enter a product...');
+  expect(inputElement).toBeInTheDocument();
 
-    expect(input.value).toBe('Novo produto')
-  })
+  const buttonElement = screen.getByText('Search');
+  expect(buttonElement).toBeInTheDocument();
 
-  test('calls onSearch with the correct query when button is clicked', () => {
-    const onSearchMock = jest.fn()
+  fireEvent.change(inputElement, { target: { value: 'Laptop' } });
+  expect(inputElement).toHaveValue('Laptop');
 
-    render(<SearchInput onSearch={onSearchMock} />)
-
-    const input = screen.getByPlaceholderText(
-      'Buscar produtos...'
-    ) as HTMLInputElement
-    const button = screen.getByTestId('search-button')
-
-    fireEvent.change(input, { target: { value: 'Produto teste' } })
-
-    fireEvent.click(button)
-
-    expect(onSearchMock).toHaveBeenCalledWith('Produto teste')
-  })
-})
+  fireEvent.click(buttonElement);
+  expect(searchProductsMock).toHaveBeenCalledWith('Laptop');
+});

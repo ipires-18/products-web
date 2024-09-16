@@ -1,52 +1,39 @@
-import React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
-import { GridLayout } from './grid-layout'
+import React from 'react';
+import { render } from '@testing-library/react';
+import * as Styled from './styles';
+import { GridLayout } from './grid-layout';
 
-jest.mock('./styles', () => ({
-  GridLayoutSelector: (props: any) => (
-    <select {...props} data-testid="grid-layout-selector" />
-  ),
-  GridLayout: (props: any) => <div {...props} data-testid="grid-layout" />
-}))
+test('renders GridLayout with correct styles', () => {
+  const { container } = render(
+    <GridLayout>
+      <div>Child Component</div>
+    </GridLayout>
+  );
 
-describe('GridLayout Component', () => {
-  beforeEach(() => {
-    render(
-      <GridLayout>
-        <div>Child Component</div>
-      </GridLayout>
-    )
-  })
+  const gridLayout = container.firstChild as HTMLElement;
 
-  test('renders GridLayout with initial "auto" state', () => {
-    expect(screen.getByTestId('grid-layout-selector')).toBeInTheDocument()
+  expect(gridLayout).toHaveStyle('padding: 20px');
+  expect(gridLayout).toHaveStyle('display: grid');
+  expect(gridLayout).toHaveStyle('gap: 20px');
+  expect(gridLayout).toHaveStyle('grid-template-columns: repeat(2, 1fr)');
+});
 
-    expect(screen.getByText('Padrão automático')).toBeInTheDocument()
-    expect(screen.getByText('Exibir uma coluna')).toBeInTheDocument()
-    expect(screen.getByText('Exibir duas colunas')).toBeInTheDocument()
-    expect(screen.getByText('Exibir três colunas')).toBeInTheDocument()
-    expect(screen.getByText('Exibir quatro colunas')).toBeInTheDocument()
+test('renders GridLayoutSelector with correct styles', () => {
+  const { container } = render(
+    <Styled.GridLayoutSelector>
+      <option value="option1">Option 1</option>
+    </Styled.GridLayoutSelector>
+  );
 
-    expect(screen.getByTestId('grid-layout-selector')).toHaveValue('auto')
+  const selector = container.firstChild as HTMLElement;
 
-    expect(screen.getByTestId('grid-layout')).toHaveTextContent(
-      'Child Component'
-    )
-  })
-
-  test('changes layout when select value changes', () => {
-    fireEvent.change(screen.getByTestId('grid-layout-selector'), {
-      target: { value: '4-cols' }
-    })
-
-    expect(screen.getByTestId('grid-layout-selector')).toHaveValue('4-cols')
-  })
-
-  test('changes layout to "auto" when selected', () => {
-    fireEvent.change(screen.getByTestId('grid-layout-selector'), {
-      target: { value: 'auto' }
-    })
-
-    expect(screen.getByTestId('grid-layout-selector')).toHaveValue('auto')
-  })
-})
+  expect(selector).toHaveStyle('margin: 20px');
+  expect(selector).toHaveStyle('padding: 10px 12px');
+  expect(selector).toHaveStyle('font-size: 16px');
+  expect(selector).toHaveStyle('border: 2px solid #828ef9');
+  expect(selector).toHaveStyle('border-radius: 4px');
+  expect(selector).toHaveStyle('background-color: #fff');
+  expect(selector).toHaveStyle('color: #333');
+  expect(selector).toHaveStyle('cursor: pointer');
+  expect(selector).toHaveStyle('box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)');
+});
