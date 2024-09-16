@@ -20,6 +20,7 @@ export default async function Products({ params }: Props) {
 
   return (
     <Details
+      id={response?.product.id}
       brand={response?.product.brand}
       category={response?.product.category}
       color={response?.product.color}

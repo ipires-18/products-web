@@ -5,6 +5,8 @@ import Image from 'next/image'
 import { DetailsProps } from '@/types/components/details'
 import Link from 'next/link'
 import { calculateDiscountedPrice } from '@/utils/calculateDiscountedPrice'
+import { Cart } from '../Cart/Cart'
+import AddToCartButton from '../Cart/AddToCartButton'
 
 export const Details: React.FC<DetailsProps> = ({
   title,
@@ -15,7 +17,8 @@ export const Details: React.FC<DetailsProps> = ({
   discount,
   image,
   model,
-  price
+  price,
+  id
 }) => {
   const discountedPrice = calculateDiscountedPrice(
     Number(price),
@@ -63,6 +66,16 @@ export const Details: React.FC<DetailsProps> = ({
           </Styled.ProductDetail>
           <Styled.ProductDetail>
             <strong>TOTAL:</strong> {discountedPrice}
+          </Styled.ProductDetail>
+          <Styled.ProductDetail>
+            <Cart />
+            <AddToCartButton
+              item={{
+                id: id || 0,
+                name: title || 'Nome indisponível',
+                price: discountedPrice ?? 0
+              }}
+            />
           </Styled.ProductDetail>
         </Styled.ProductDetails>
       </Styled.Content>
