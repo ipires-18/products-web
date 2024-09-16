@@ -1,4 +1,5 @@
 export interface DetailsProps {
+  id: number | undefined
   title: string | undefined
   image: string | undefined
   price: number | undefined
