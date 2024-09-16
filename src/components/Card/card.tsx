@@ -11,11 +11,13 @@ export const Card: React.FC<CardProps> = ({
   description,
   price
 }) => {
+
   const formattedNumberInBRLocale = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL'
   }).format(price)
   const descriptionFormatted = truncateText(description, 150)
+  const titleFormatted = truncateText(title, 150)
 
   return (
     <Styled.Container>
@@ -23,10 +25,12 @@ export const Card: React.FC<CardProps> = ({
         <Image src={imageSrc} alt="img" fill style={{ objectFit: 'contain' }} />
       </Styled.ImageWrapper>
       <Styled.Content>
-        <Styled.Title>{title}</Styled.Title>
+        <Styled.Title>{titleFormatted}</Styled.Title>
         <Styled.Text>{descriptionFormatted}</Styled.Text>
         <Styled.Price>{formattedNumberInBRLocale}</Styled.Price>
       </Styled.Content>
     </Styled.Container>
   )
 }
+
+
