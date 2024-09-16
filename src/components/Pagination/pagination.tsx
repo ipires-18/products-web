@@ -1,27 +1,43 @@
 'use client'
-import React from 'react'
-import * as Styled from './styles'
-import { PaginationProps } from '@/types/components/pagination'
 
-export const Pagination: React.FC<PaginationProps> = ({
-  currentPage,
-  totalPages,
-  onPageChange
-}) => {
+import React, { useState, useEffect } from 'react'
+import * as Styled from './styles'
+import { api } from '@/tools/api';
+import { useProducts } from '@/context/ProductsContext';
+
+const totalPages = 10;
+
+export const Pagination: React.FC = () => {
+  const { setProducts } = useProducts();
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const fetchPageData  = async (page: number)  => {
+
+    const response = await api.get(`/products?page=${page}&limit=10`);
+
+    setProducts(response.data.products);
+  }
+
+  useEffect(() => {
+    fetchPageData(currentPage);
+  }, [currentPage]);
+
   const handlePrevious = () => {
     if (currentPage > 1) {
-      onPageChange(currentPage - 1)
+      setCurrentPage(prevPage => prevPage - 1);
     }
   }
 
   const handleNext = () => {
     if (currentPage < totalPages) {
-      onPageChange(currentPage + 1)
+      setCurrentPage(prevPage => prevPage + 1);
     }
   }
 
   const handlePageClick = (page: number) => {
-    onPageChange(page)
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
   }
 
   return (
